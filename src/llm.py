@@ -1,16 +1,21 @@
-from langchain_google_vertexai import VertexAI
-import os
-
-project_id = os.getenv("GCP_PROJECT_ID")
-location = os.getenv("GCP_LOCATION", "us-central1")
+# def get_llm():
+#     try:
+#         from langchain_google_vertexai import VertexAI
         
-
-def get_llm(model="gemini-2.5-flash-lite"):
-
-    return VertexAI(
-            project=project_id,
-            location=location,
-            model_name=model,
-            max_output_tokens=256,
-            temperature=0.1
-        )
+#         project_id = os.getenv("GCP_PROJECT_ID")
+#         location = os.getenv("GCP_LOCATION", "us-central1")
+        
+#         if not project_id:
+#             st.error("❌ GCP Project ID not found")
+#             return None
+            
+#         st.success("✅ Initializing Vertex AI...")
+#         return VertexAI(
+#             project=project_id,
+#             location=location,
+#             model_name="gemini-pro"
+#         )
+#     except Exception as e:
+#         st.error(f"❌ Vertex AI Error: {str(e)}")
+#         return None
+        

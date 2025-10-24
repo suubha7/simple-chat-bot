@@ -1,5 +1,4 @@
 from langchain_core.prompts import PromptTemplate
-from src.llm import get_llm
 import streamlit as st
 import os
 

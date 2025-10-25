@@ -36,7 +36,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # Title
-st.title("Gemini Chat Bot")
+st.title("Simple Chat Bot")
 
 # Read environment variables
 project_id = os.getenv("GCP_PROJECT_ID")
@@ -76,6 +76,6 @@ if submit and user_question:
         try:
             response = llm.invoke(user_question)
             st.markdown("### Response")
-            st.markdown(f"<div style='background-color:#ffffff;padding:15px;border-radius:5px;border:1px solid #ddd;'>{response}</div>", unsafe_allow_html=True)
+            st.markdown(f"<div style='background-color:#1d1f33;padding:15px;border-radius:5px;border:1px solid #ddd;'>{response}</div>", unsafe_allow_html=True)
         except Exception as e:
             st.error(f"Failed to get response:\n\n{e}")

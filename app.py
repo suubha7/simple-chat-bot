@@ -1,7 +1,9 @@
 import os
 import streamlit as st
 from dotenv import load_dotenv
+from langchain_core.prompts import PromptTemplate
 from langchain_google_vertexai import VertexAI
+
 
 # Load environment variables
 load_dotenv()
@@ -66,6 +68,11 @@ except Exception as e:
     st.error(f"Vertex AI connection failed:\n\n{e}")
     st.stop()
 
+template = PromptTemplate(
+    input_variables=["question"],
+    template="You are a helpful assistant.  Your name is intellexa. Answer the following question clearly, shortly and concisely:\n\n{question}"
+)
+
 # Chat UI
 st.subheader("💬 Ask me anything")
 user_question = st.text_input("Your question:", placeholder="e.g. What is LangChain?")
@@ -74,7 +81,8 @@ submit = st.button("Ask")
 if submit and user_question:
     with st.spinner("Thinking..."):
         try:
-            response = llm.invoke(user_question)
+            prompt = template.format(question = user_question)
+            response = llm.invoke(prompt)
             st.markdown("### Response")
             st.markdown(f"<div style='background-color:#1d1f33;padding:15px;border-radius:5px;border:1px solid #ddd;'>{response}</div>", unsafe_allow_html=True)
         except Exception as e:
